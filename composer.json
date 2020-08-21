@@ -1,0 +1,23 @@
+{
+    "name": "soswapp/soswapp",
+    "description": "7 OS Web - App template",
+    "keywords": ["php", "javascript","7","seven","os","web","app"],
+    "homepage": "https://github.com/soswapp/soswapp",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ikechukwu Okalia",
+            "email": "dev@ikechukwuokalia.com"
+        },
+        {
+            "name": "Tym Frontiers Ltd.",
+            "email": "dev@tymfrontiers.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {},
+    "autoload": {
+        "psr-4": {}
+    }
+}

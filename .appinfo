@@ -1,0 +1,26 @@
+{
+  "nav" : false,
+  "icon" : "<i class='fas fa-icon'</i>",
+  "name" : "soswapp/soswapp",
+  "title" : "App template",
+  "description" : "7 OS Web app - template.",
+  "homepage" : "https://github.com/soswapp/soswapp",
+  "authors": [
+      {
+        "name": "Ikechukwu Okalia",
+        "email": "dev@ikechukwuokalia.com"
+      },
+      {
+        "name": "Tym Frontiers Ltd.",
+        "email": "dev@tymfrontiers.com"
+      }
+  ],
+  "support" : {
+    "email" : "dev@tymfrontiers.com",
+    "website" : "https://dev.tymfrontiers.com",
+    "kollabo" : "tymfrontiers",
+    "twitter" : "tymfrontiers",
+    "facebook" : "tymfrontiers",
+    "instagram" : "tymfrontiers"
+  }
+}
