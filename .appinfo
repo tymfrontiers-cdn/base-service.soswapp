@@ -1,10 +1,10 @@
 {
   "nav" : false,
   "icon" : "<i class='fas fa-icon'</i>",
-  "name" : "soswapp/soswapp",
-  "title" : "App template",
-  "description" : "7 OS Web app - template.",
-  "homepage" : "https://github.com/soswapp/soswapp",
+  "name" : "tymfrontiers-cdn/base-service.soswapp",
+  "title" : "Base service",
+  "description" : "7 OS Project Web Service",
+  "homepage" : "https://github.com/tymfrontiers-cdn/base-service.soswapp",
   "authors": [
       {
         "name": "Ikechukwu Okalia",
