@@ -21,7 +21,7 @@
     "tymfrontiers-cdn/php-http-client" : ">=0.1@stable",
     "tymfrontiers-cdn/php-api-authentication": ">=0.1.0@stable",
     "tymfrontiers-cdn/php-generic": ">=0.1.0@stable",
-    "tymfrontiers-cdn/php-multform": ">=0.1.0@stable",
+    "tymfrontiers-cdn/php-multiform": ">=0.1.0@stable",
     "tymfrontiers-cdn/php-sos-emailer": ">=0.1.0@stable"
   },
   "require-dev": {},
