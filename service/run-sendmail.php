@@ -3,12 +3,11 @@ namespace TymFrontiers;
 require_once "../.appinit.php";
 use \TymFrontiers\HTTP\Header,
     \Mailgun\Mailgun;
-
+\header("Content-Type: application/json");
 $post = \json_decode( \file_get_contents('php://input'), true); // json data
 $post = !empty($post) ? $post : (
   !empty($_POST) ? $_POST : $_GET
 );
-
 $gen = new Generic;
 $auth = new API\Authentication ($api_sign_patterns);
 $http_auth = $auth->validApp ();
