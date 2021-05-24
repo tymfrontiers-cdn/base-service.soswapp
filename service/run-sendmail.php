@@ -49,12 +49,12 @@ if( !$http_auth ){
   }
 }
 // Begin dev process
-$GLOBALS["database"]->closeConnection();
-$GLOBALS["database"] = new \TymFrontiers\MySQLDatabase(MYSQL_SERVER, MYSQL_DEVELOPER_USERNAME, MYSQL_DEVELOPER_PASS);
 $limit = $params['limit'] > 0 ? $params['limit'] : 200;
 $send_errors = [];
 $mails = (new MultiForm(MYSQL_LOG_DB,'email_outbox','id'))->findBySql("SELECT * FROM :db:.:tbl: WHERE status ='Q' ORDER BY priority ASC, _created DESC LIMIT {$limit}");
 if( $mails ):
+  $GLOBALS["database"]->closeConnection();
+  $GLOBALS["database"] = new \TymFrontiers\MySQLDatabase(MYSQL_SERVER, MYSQL_DEVELOPER_USERNAME, MYSQL_DEVELOPER_PASS);
   $batches = [];
   $ids = [];
   $attachments = [];
