@@ -67,13 +67,17 @@ if( $mails ):
   $file_db = MYSQL_FILE_DB;
   $file_tbl = MYSQL_FILE_TBL;
   foreach($batches as $batch){
-    $files = File::findBySql("SELECT * FROM {$file_db}.`{$file_tbl}` WHERE id IN (
-      SELECT fid FROM {$log_db}.email_outbox_attachment WHERE ebatch = '{$database->escapeValue($batch)}'
-    )");
+    $files = (new File)->findBySql("SELECT *
+                FROM :db:.:tbl:
+                WHERE id IN (
+                  SELECT fid
+                  FROM `{$log_db}`.`email_outbox_attachment`
+                  WHERE ebatch = '{$database->escapeValue($batch)}'
+                )");
     if( $files ){
       foreach($files as $file){
         $attachments[$batch][] = [
-          "remoteName" => $file->nice_name . '.' . Generic::fileExt($file->fullPath()),
+          "filename" => $file->nice_name . '.' . Generic::fileExt($file->fullPath()),
           "filePath" => $file->fullPath()
         ];
       }
@@ -99,10 +103,11 @@ if( $mails ):
         $msg_r[$header_r[0]] = $header_r[1];
       }
     }
+    if (!empty($attachments[$batch])) {
+      $msg_r["attachment"] = $attachments[$batch];
+    }
     try {
-      $result = !empty($attachments[$eml->batch])
-        ? $mgClient->messages()->send($mailgun_api_domain,$msg_r,['attachment'=>$attachments[$batch]])
-        : $mgClient->messages()->send($mailgun_api_domain,$msg_r);
+      $result = $mgClient->messages()->send($mailgun_api_domain,$msg_r);
       if(
         \is_object($result) &&
         !empty($result->getId()) &&
