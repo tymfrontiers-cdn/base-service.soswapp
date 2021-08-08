@@ -9,7 +9,7 @@ $post = !empty($post) ? $post : (
   !empty($_POST) ? $_POST : $_GET
 );
 $gen = new Generic;
-$auth = new API\Authentication ($api_sign_patterns);
+$auth = new API\Authentication ($api_sign_patterns, "", 0, false);
 $http_auth = $auth->validApp ();
 if ( !$http_auth && ( empty($post['form']) || empty($post['CSRF_token']) ) ){
   HTTP\Header::unauthorized (false,'', Generic::authErrors ($auth,"Request [Auth-App]: Authetication failed.",'self',true));
@@ -49,7 +49,7 @@ if( !$http_auth ){
   }
 }
 // Begin dev process
-$limit = $params['limit'] > 0 ? $params['limit'] : 200;
+$limit = $params['limit'] > 0 ? $params['limit'] : 50;
 $send_errors = [];
 $mails = (new MultiForm(MYSQL_LOG_DB,'email_outbox','id'))->findBySql("SELECT * FROM :db:.:tbl: WHERE status ='Q' ORDER BY priority ASC, _created DESC LIMIT {$limit}");
 if( $mails ):
@@ -103,8 +103,8 @@ if( $mails ):
         $msg_r[$header_r[0]] = $header_r[1];
       }
     }
-    if (!empty($attachments[$batch])) {
-      $msg_r["attachment"] = $attachments[$batch];
+    if (!empty($attachments[$eml->batch])) {
+      $msg_r["attachment"] = $attachments[$eml->batch];
     }
     try {
       $result = $mgClient->messages()->send($mailgun_api_domain,$msg_r);
