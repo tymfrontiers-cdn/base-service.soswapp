@@ -37,7 +37,7 @@ if (@ $post['type'] == "state") $req[] = "countryCode";
 if (@ \in_array($post['type'], ["city","lga"])) $req[] = "stateCode";
 $params = $gen->requestParam($rqp,$post,$req);
 if (!$params || !empty($gen->errors)) {
-  $errors = (new InstanceError($gen,true))->get("requestParam",true);
+  $errors = (new InstanceError($gen, false))->get("requestParam",true);
   echo \json_encode([
     "status" => "3." . \count($errors),
     "errors" => $errors,
@@ -47,7 +47,7 @@ if (!$params || !empty($gen->errors)) {
 }
 if( !$http_auth ){
   if ( !$gen->checkCSRF($params["form"],$params["CSRFToken"]) ) {
-    $errors = (new InstanceError($gen,true))->get("checkCSRF",true);
+    $errors = (new InstanceError($gen, false))->get("checkCSRF",true);
     echo \json_encode([
       "status" => "3." . \count($errors),
       "errors" => $errors,
