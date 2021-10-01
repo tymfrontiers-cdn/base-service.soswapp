@@ -9,7 +9,7 @@ $post = !empty($post) ? $post : (
   !empty($_POST) ? $_POST : $_GET
 );
 $gen = new Generic;
-$auth = new API\Authentication ($api_sign_patterns, "", 0, false);
+$auth = new API\Authentication ($api_sign_patterns, "", 0, true);
 $http_auth = $auth->validApp ();
 if ( !$http_auth && ( empty($post['form']) || empty($post['CSRF_token']) ) ){
   HTTP\Header::unauthorized (false,'', Generic::authErrors ($auth,"Request [Auth-App]: Authetication failed.",'self',true));
